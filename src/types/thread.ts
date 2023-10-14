@@ -1,5 +1,6 @@
 import Timestamp from "@/types/timestamp";
 import Fileable from "@/types/fileable";
+import User from "@/types/user";
 
 type Threadable = {
     id: string;

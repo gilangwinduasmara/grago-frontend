@@ -6,3 +6,5 @@ type User = {
     email: string;
     avatar?: Fileable;
 };
+
+export default User;
