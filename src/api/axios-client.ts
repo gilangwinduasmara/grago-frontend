@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
+import {User} from "next-auth";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
