@@ -14,11 +14,12 @@ export default function Header(){
                     </div>
                     <div>
                         <Image
-                            src={'/grago.svg'}
+                            src={'/grago.png'}
                             width={100}
                             height={42}
                             alt={'Grago'}
                             preview={false}
+                            className={'object-contain'}
                         />
                     </div>
                     <div className="flex items-center justify-end flex-grow gap-2">

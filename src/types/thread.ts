@@ -11,6 +11,7 @@ type Threadable = {
     up_votes_count: number;
     down_votes_count: number;
     product_id?: string;
+    tags?: string;
 } & Timestamp;
 
 type Thread = Threadable & {

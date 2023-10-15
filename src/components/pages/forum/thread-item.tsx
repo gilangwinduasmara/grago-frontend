@@ -21,6 +21,7 @@ const ThreadItem = ({
                         onVoted,
                         up_votes_count,
                         product_id,
+                        tags,
                     }: Thread & { onVoted?: () => void }) => {
     const {handleVote, voting} = useVote({
         onVoted,
@@ -50,9 +51,12 @@ const ThreadItem = ({
                 !parent_id ? (
                     <div className={'p-4'}>
                         <div>
-                            <Tag className={'border-blue-400 text-blue-400 rounded-full'}>Molting</Tag>
-                            <Tag className={'border-blue-400 text-blue-400 rounded-full'}>Vannamei</Tag>
-                            <Tag className={'border-blue-400 text-blue-400 rounded-full'}>Penyakit Udang</Tag>
+                            {
+                                tags &&
+                                (tags?.split(',')).map((tag, index) => (
+                                    <Tag key={index} className={'border-blue-400 text-blue-400 rounded-full'}>{tag}</Tag>
+                                ))
+                            }
                         </div>
                         <div className={'grid grid-cols-3 gap-4 mt-2'}>
                             <div
