@@ -1,6 +1,6 @@
 import ThreadList from "@/components/pages/forum/thread-list";
 import ForumLayout from "@/components/layouts/forum-layout";
-import {Button, Tag} from "antd";
+import {Button, Image, Input, Tag} from "antd";
 import {useState} from "react";
 import ComposeThread from "@/components/forms/compose-thread";
 import {useRouter} from "next/router";
@@ -67,7 +67,27 @@ export default function ForumContent() {
                         <div className={'px-4'}>
                             {
                                 status === 'authenticated' &&
-                                <ComposeThread onThreadSubmitted={refetch}/>
+                                (
+                                    <div className={'flex items-center gap-2'}>
+                                        <div className={'bg-blue-400 h-[2.4rem] w-[2.4rem] rounded-full overflow-hidden'}>
+                                            {
+                                                (data?.user as any)?.avatar_url && (
+                                                    <Image
+                                                        src={(data?.user as any)?.avatar_url}
+                                                        width={'100%'}
+                                                        height={'100%'}
+                                                        alt={data?.user?.name || ''}
+                                                        preview={false}
+                                                        className={'object-cover'}
+                                                    />
+                                                )
+                                            }
+                                        </div>
+                                        <Link href={'/compose'} className={'w-[80%]'}>
+                                            <Input.TextArea placeholder={'Tulis postingan anda'} style={{height: 20}}></Input.TextArea>
+                                        </Link>
+                                    </div>
+                                )
                             }
 
                             {

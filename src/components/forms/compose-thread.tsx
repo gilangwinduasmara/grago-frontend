@@ -7,6 +7,8 @@ import {useState} from "react";
 import {UploadChangeParam} from "antd/lib/upload";
 import AxiosClient from "@/api/axios-client";
 import {useSession} from "next-auth/react";
+import ThreadHeader from "@/components/pages/forum/thread-header";
+import {useRouter} from "next/router";
 type ComposeThreadProps = {
     onThreadSubmitted?: () => void;
 }
@@ -16,8 +18,10 @@ export default function ComposeThread({onThreadSubmitted}: ComposeThreadProps){
     const [submiting, setSubmiting] = useState(false);
     const [image, setImage] = useState<any | undefined>(undefined);
     const {
-        data
+        data,
+        status,
     } = useSession()
+    const router = useRouter();
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
             setUploading(true);
@@ -42,6 +46,7 @@ export default function ComposeThread({onThreadSubmitted}: ComposeThreadProps){
             onThreadSubmitted?.();
             setComment('');
             setImage(undefined);
+            await router.push('/');
         }catch (e){
 
         }
@@ -71,27 +76,17 @@ export default function ComposeThread({onThreadSubmitted}: ComposeThreadProps){
                     </div>
                 )
             }
+            {
+                status === 'authenticated' && (
+                    <>
+                        <ThreadHeader {...data.user as any} created_at={null} region_name={'Cidaun Cianjur'} />
+                    </>
+                )
+            }
             <div className={'flex gap-2'}>
-                {
-                    (data?.user as any)?.avatar_url &&
-                    <div className="h-[1.5rem] w-[1.5rem] rounded-full bg-gray-300 overflow-hidden">
-                        {
-                            (data?.user as any)?.avatar_url && (
-                                <Image
-                                    src={(data?.user as any)?.avatar_url}
-                                    width={24}
-                                    height={24}
-                                    alt={data?.user?.name || ''}
-                                    preview={false}
-                                    className={'object-cover'}
-                                />
-                            )
-                        }
-                    </div>
-                }
                 <div className={'w-full space-y-2'}>
                     <Input.TextArea placeholder={'Tulis postingan anda'} value={comment} onChange={(e) => setComment(e.target.value)}></Input.TextArea>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 gap-2">
                         <Button className={'border-blue-600'} loading={uploading}>
                             <Upload
                                 name="attachment"

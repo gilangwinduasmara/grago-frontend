@@ -3,7 +3,7 @@ import {Image} from "antd";
 
 type ThreadHeaderProps = {
     name: string;
-    created_at: Date;
+    created_at?: Date;
     region_name: string;
     avatar_url?: string;
 }
@@ -27,8 +27,14 @@ export default function ThreadHeader({name, created_at, region_name, avatar_url}
             <div>
                 <div className={'flex items-center gap-2'}>
                     <div className={'font-bold tracking-[0.5px]'}>{name}</div>
-                    <div>·</div>
-                    <div className={'text-neutral-gray-700'}>{(dayjs() as any).to(dayjs(created_at))}</div>
+                    {
+                        created_at && (
+                            <>
+                                <div>·</div>
+                                <div className={'text-neutral-gray-700'}>{(dayjs() as any).to(dayjs(created_at))}</div>
+                            </>
+                        )
+                    }
                 </div>
                 <div className={'text-neutral-gray-700 text-sm/[12px]'}>{region_name}</div>
             </div>
