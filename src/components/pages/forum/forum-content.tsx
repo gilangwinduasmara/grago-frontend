@@ -1,12 +1,14 @@
 import ThreadList from "@/components/pages/forum/thread-list";
 import ForumLayout from "@/components/layouts/forum-layout";
-import {Tag} from "antd";
+import {Button, Tag} from "antd";
 import {useState} from "react";
 import ComposeThread from "@/components/forms/compose-thread";
 import {useRouter} from "next/router";
 import {useQuery} from "@tanstack/react-query";
 import AxiosClient from "@/api/axios-client";
 import {Thread} from "@/types/thread";
+import {useSession} from "next-auth/react";
+import Link from "next/link";
 
 export default function ForumContent() {
     const [activeTags, setActiveTags] = useState<string[]>([]);
@@ -41,6 +43,11 @@ export default function ForumContent() {
         return response.data.data;
     });
 
+    const {
+        data,
+        status,
+    } = useSession();
+
     return (
         <ForumLayout>
             <div className="container mx-auto my-4">
@@ -58,7 +65,30 @@ export default function ForumContent() {
                     </div>
                     <div className={'mt-8 space-y-2'}>
                         <div className={'px-4'}>
-                            <ComposeThread onThreadSubmitted={refetch}/>
+                            {
+                                status === 'authenticated' &&
+                                <ComposeThread onThreadSubmitted={refetch}/>
+                            }
+
+                            {
+                                status === 'unauthenticated' &&
+                                (
+                                    <>
+                                        <div className={'text-center text-lg font-bold text-neutral-gray-800'}>
+                                            Anda belum login
+                                        </div>
+                                        <div className={'text-center text-sm text-neutral-gray-600'}>
+                                            Silahkan login terlebih dahulu untuk mengakses seluruh fitur
+                                        </div>
+                                        <div className={'flex justify-center'}>
+                                            <Link href={'/login'}>
+                                                <Button>Login</Button>
+                                            </Link>
+                                        </div>
+                                    </>
+                                )
+                            }
+
                         </div>
                         <ThreadList threads={threads || []} isLoading={isLoading} onRefresh={refetch}/>
                     </div>

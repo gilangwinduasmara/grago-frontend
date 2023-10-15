@@ -1,5 +1,6 @@
 import {Button, Form, Input} from "antd";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 type LoginFormProps = {
     loading?: boolean
@@ -25,6 +26,14 @@ export default function LoginForm(props: LoginFormProps){
                 <Input type={'password'}/>
             </Form.Item>
             <Button htmlType={'submit'} loading={props.loading}>Login</Button>
+            <div className={'text-center'}>
+                <div>
+                    Belum punya akun?
+                </div>
+                <Link href={'/register'} className={'text-blue-400 font-bold'}>
+                    Daftar
+                </Link>
+            </div>
         </>
     )
 }

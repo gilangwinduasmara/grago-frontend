@@ -4,6 +4,7 @@ import { message } from 'antd';
 import {RcFile, UploadChangeParam} from "antd/lib/upload";
 import {useState} from "react";
 import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
+import Link from "next/link";
 type RegisterFormProps = {
     loading?: boolean;
     form: FormInstance;
@@ -96,6 +97,14 @@ export default function RegisterForm(props: RegisterFormProps){
                 <Input type={'password'}/>
             </Form.Item>
             <Button htmlType={'submit'} loading={props.loading}>Register</Button>
+            <div className={'text-center'}>
+                <div>
+                    Sudah punya akun?
+                </div>
+                <Link href={'/login'} className={'text-blue-400 font-bold'}>
+                    Login
+                </Link>
+            </div>
         </>
     )
 }
