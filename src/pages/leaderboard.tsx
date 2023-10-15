@@ -14,7 +14,8 @@ export default function LeaderboardPage(){
             badges: [
                 JalaBadge,
                 LegendaryBadge,
-            ]
+            ],
+            points: 5700,
         },
         {
             name: 'Agus Sholeh',
@@ -23,7 +24,8 @@ export default function LeaderboardPage(){
             badges: [
                 JalaBadge,
                 LegendaryBadge,
-            ]
+            ],
+            points: 5600,
         },
         {
             name: 'Hadi Bowo',
@@ -31,7 +33,8 @@ export default function LeaderboardPage(){
             avatar_url: '/a3.png',
             badges: [
                 LegendaryBadge,
-            ]
+            ],
+            points: 5550,
         },
         {
             name: 'Sujono',
@@ -39,17 +42,20 @@ export default function LeaderboardPage(){
             avatar_url: '/a4.png',
             badges: [
                 LegendaryBadge,
-            ]
+            ],
+            points: 5300,
         },
         {
             name: 'Handoyo',
             region: 'Bantul, DIY',
             avatar_url: '/a5.png',
+            points: 5231,
         },
         {
             name: 'Titisna',
             region: 'Bantul, DIY',
             avatar_url: '/a6.png',
+            points: 5100,
         },
         {
             name: 'Kabayan',
@@ -57,12 +63,14 @@ export default function LeaderboardPage(){
             avatar_url: '/a7.png',
             badges: [
                 JalaBadge
-            ]
+            ],
+            points: 5003,
         },
         {
             name: 'Nando Andika',
             region: 'Bantul, DIY',
             avatar_url: '/a8.png',
+            points: 4999,
         },
         {
             name: 'Baron Dimas',
@@ -70,12 +78,14 @@ export default function LeaderboardPage(){
             avatar_url: '/a9.png',
             badges: [
                 JalaBadge
-            ]
+            ],
+            points: 4900,
         },
         {
             name: 'Anjas Prasetyo',
             region: 'Bantul, DIY',
             avatar_url: '/a10.png',
+            points: 4400,
         },
     ];
     return (
@@ -117,7 +127,10 @@ export default function LeaderboardPage(){
                                                 ))
                                             }
                                         </div>
-                                        <div className={'text-neutral-gray-700 text-sm/[12px]'}>{user.region}</div>
+                                        <div className={'text-neutral-gray-700 text-sm/[12px]'}>
+                                            {user.region}
+                                            <span className={'text-blue-400 font-bold ps-2'}>{user.points} point</span>
+                                        </div>
                                     </div>
                                     {
                                         index === 0 && (
