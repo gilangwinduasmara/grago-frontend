@@ -1,13 +1,16 @@
 import dayjs from "dayjs";
 import {Image} from "antd";
+import {JalaBadge} from "@/components/badges";
 
 type ThreadHeaderProps = {
     name: string;
     created_at?: Date;
     region_name: string;
     avatar_url?: string;
+    email?: string;
 }
-export default function ThreadHeader({name, created_at, region_name, avatar_url}: ThreadHeaderProps){
+export default function ThreadHeader({name, created_at, region_name, avatar_url, email}: ThreadHeaderProps){
+    const hasJalaBadge = email?.endsWith('@jala.tech')
     return (
         <div className="flex gap-2 items-center">
             <div className={'bg-blue-400 h-[2.4rem] w-[2.4rem] rounded-full overflow-hidden'}>
@@ -27,6 +30,9 @@ export default function ThreadHeader({name, created_at, region_name, avatar_url}
             <div>
                 <div className={'flex items-center gap-2'}>
                     <div className={'font-bold tracking-[0.5px]'}>{name}</div>
+                    {
+                        hasJalaBadge && <JalaBadge />
+                    }
                     {
                         created_at && (
                             <>

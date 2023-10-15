@@ -31,7 +31,7 @@ const ThreadItem = ({
         <div className={'bg-white'}>
             <div className={'px-4 py-2'}>
                 <ThreadHeader avatar_url={user.avatar?.url || ''} name={user.name} created_at={created_at}
-                              region_name={'Tasikmalaya, Jawa Barat'}/>
+                              region_name={'Tasikmalaya, Jawa Barat'} email={user.email}/>
                 <div className={'mt-[8px] font-bold tracking-[0.5px]'}>
                     {content}
                 </div>

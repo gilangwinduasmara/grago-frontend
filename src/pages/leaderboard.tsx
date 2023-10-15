@@ -3,6 +3,7 @@ import ComposeThread from "@/components/forms/compose-thread";
 import {Button, Image} from "antd";
 import DefaultLayout from "@/components/layouts/default-layout";
 import dayjs from "dayjs";
+import {LegendaryBadge, JalaBadge} from "@/components/badges";
 
 export default function LeaderboardPage(){
     const users = [
@@ -10,21 +11,35 @@ export default function LeaderboardPage(){
             name: 'Pakde Rock',
             region: 'Bantul, DIY',
             avatar_url: '/a1.png',
+            badges: [
+                JalaBadge,
+                LegendaryBadge,
+            ]
         },
         {
             name: 'Agus Sholeh',
-            region: 'Bantul, DIY',
+            region: 'Bulukumba, Sulawesi Selatan',
             avatar_url: '/a2.png',
+            badges: [
+                JalaBadge,
+                LegendaryBadge,
+            ]
         },
         {
             name: 'Hadi Bowo',
             region: 'Bantul, DIY',
             avatar_url: '/a3.png',
+            badges: [
+                LegendaryBadge,
+            ]
         },
         {
             name: 'Sujono',
-            region: 'Bantul, DIY',
+            region: 'Bulukumba, Sulawesi Selatan',
             avatar_url: '/a4.png',
+            badges: [
+                LegendaryBadge,
+            ]
         },
         {
             name: 'Handoyo',
@@ -40,6 +55,9 @@ export default function LeaderboardPage(){
             name: 'Kabayan',
             region: 'Bantul, DIY',
             avatar_url: '/a7.png',
+            badges: [
+                JalaBadge
+            ]
         },
         {
             name: 'Nando Andika',
@@ -50,6 +68,9 @@ export default function LeaderboardPage(){
             name: 'Baron Dimas',
             region: 'Bantul, DIY',
             avatar_url: '/a9.png',
+            badges: [
+                JalaBadge
+            ]
         },
         {
             name: 'Anjas Prasetyo',
@@ -90,6 +111,11 @@ export default function LeaderboardPage(){
                                     <div className={'flex-grow'}>
                                         <div className={'flex items-center gap-2'}>
                                             <div className={'font-bold tracking-[0.5px]'}>{user.name}</div>
+                                            {
+                                                user?.badges && user?.badges?.map((Badge, index) => (
+                                                    <Badge key={index} />
+                                                ))
+                                            }
                                         </div>
                                         <div className={'text-neutral-gray-700 text-sm/[12px]'}>{user.region}</div>
                                     </div>

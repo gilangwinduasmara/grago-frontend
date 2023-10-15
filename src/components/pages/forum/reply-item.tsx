@@ -31,7 +31,7 @@ const ReplyItem = ({id, replies, content, user, created_at, replies_count, attac
     return (
         <div className={'bg-white'}>
             <div className={'px-4 py-2'}>
-                <ThreadHeader avatar_url={user?.avatar?.url} name={user?.name} created_at={created_at} region_name={'Tasikmalaya, Jawa Barat'} />
+                <ThreadHeader avatar_url={user?.avatar?.url} name={user?.name} email={user?.email} created_at={created_at} region_name={'Tasikmalaya, Jawa Barat'} />
                 <div className={'mt-[8px] font-normal tracking-[0.5px] ps-12'}>
                     {content}
                 </div>
