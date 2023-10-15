@@ -43,7 +43,7 @@ export default function LoginPage(){
     return (
         <DefaultLayout>
             <div className={'container mx-auto max-w-xl'}>
-                <div className={'py-24'}>
+                <div className={'py-24 px-8'}>
                     <Form form={form} layout={'vertical'} onFinish={onFinish}>
                         <LoginForm loading={loading}/>
                     </Form>
