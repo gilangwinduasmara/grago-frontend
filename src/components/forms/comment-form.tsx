@@ -79,7 +79,7 @@ export default function CommentForm({thread_id, onCommentSubmitted}: CommentForm
                     onProductSelected={handleProductSelected}
                 />
             </Drawer>
-            <div className="flex flex-col gap-4 bg-white">
+            <div className="flex flex-col gap-4 bg-white p-4">
                 {
                     image && (
                         <div className={'flex justify-center'}>
