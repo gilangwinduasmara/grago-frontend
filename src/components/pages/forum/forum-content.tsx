@@ -4,6 +4,9 @@ import {Tag} from "antd";
 import {useState} from "react";
 import ComposeThread from "@/components/forms/compose-thread";
 import {useRouter} from "next/router";
+import {useQuery} from "@tanstack/react-query";
+import AxiosClient from "@/api/axios-client";
+import {Thread} from "@/types/thread";
 
 export default function ForumContent() {
     const [activeTags, setActiveTags] = useState<string[]>([]);
@@ -27,6 +30,17 @@ export default function ForumContent() {
 
     const isTagActive = (tag: string) => activeTags.includes(tag);
 
+    const {
+        isLoading,
+        error,
+        data: threads,
+        isFetching,
+        refetch
+    } = useQuery<Thread[]>(['threads'], async () => {
+        const response = await AxiosClient.get('/api/threads');
+        return response.data.data;
+    });
+
     return (
         <ForumLayout>
             <div className="container mx-auto my-4">
@@ -44,9 +58,9 @@ export default function ForumContent() {
                     </div>
                     <div className={'mt-8 space-y-2'}>
                         <div className={'px-4'}>
-                            <ComposeThread onThreadSubmitted={() => router.reload()}/>
+                            <ComposeThread onThreadSubmitted={refetch}/>
                         </div>
-                        <ThreadList/>
+                        <ThreadList threads={threads || []} isLoading={isLoading} onRefresh={refetch}/>
                     </div>
                 </div>
             </div>

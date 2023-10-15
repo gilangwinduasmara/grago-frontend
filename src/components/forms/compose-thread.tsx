@@ -39,7 +39,7 @@ export default function ComposeThread({onThreadSubmitted}: ComposeThreadProps){
                 content: comment,
                 attachment: image?.id,
             });
-            // onThreadSubmitted?.();
+            onThreadSubmitted?.();
             setComment('');
             setImage(undefined);
         }catch (e){

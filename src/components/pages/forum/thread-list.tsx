@@ -5,20 +5,13 @@ import {useQuery} from "@tanstack/react-query";
 import ThreadItem from "@/components/pages/forum/thread-item";
 import {Thread} from "@/types/thread";
 
-
-export default function ThreadList(){
+type ThreadListProps = {
+    threads: Thread[],
+    isLoading: boolean,
+    onRefresh?: () => void;
+}
+export default function ThreadList({threads, isLoading, onRefresh}: ThreadListProps) {
     const [loading, setLoading] = useState(true);
-
-    const {
-        isLoading,
-        error,
-        data: threads,
-        isFetching,
-    } = useQuery(['threads'], async () => {
-        const response = await AxiosClient.get('/api/threads');
-        return response.data;
-    });
-
 
     return (
         <div>
@@ -29,8 +22,8 @@ export default function ThreadList(){
                     </div>
                 ) :
                 <div className={'space-y-1 pt-1 bg-neutral-gray-100'}>
-                    {threads.data.map((thread: Thread) => (
-                        <ThreadItem key={thread.id} {...thread}/>
+                    {threads.map((thread: Thread) => (
+                        <ThreadItem key={thread.id} {...thread} onVoted={onRefresh}/>
                     ))}
                 </div>
             }

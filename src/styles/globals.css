@@ -7,3 +7,7 @@
     color: #454646;
     font-family: 'Lato', sans-serif;
 }
+
+.ant-drawer-content-wrapper {
+    height: 100vh !important;
+}

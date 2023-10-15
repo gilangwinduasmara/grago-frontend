@@ -8,6 +8,9 @@ type Threadable = {
     user: User;
     attachment?: Fileable;
     parent_id?: string;
+    up_votes_count: number;
+    down_votes_count: number;
+    product_id?: string;
 } & Timestamp;
 
 type Thread = Threadable & {

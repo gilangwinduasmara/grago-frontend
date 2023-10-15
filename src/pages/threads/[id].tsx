@@ -52,7 +52,7 @@ export default function ThreadDetail(){
                                         <ThreadItem {...thread?.data}/>
                                         {
                                             thread?.data?.replies.map((reply:any) => (
-                                                <ReplyItem {...reply} key={reply.id}/>
+                                                <ReplyItem {...reply} key={reply.id} onVoted={refetch}/>
                                             ))
                                         }
                                         {
